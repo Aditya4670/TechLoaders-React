@@ -1,21 +1,17 @@
 const cors = require('cors');
 const express = require("express");
 const mongoose = require("mongoose");
-const passport = require("passport");
 
 require("dotenv").config();
-require("./config/passport")(passport);
 
 const app = express();
 const port = process.env.PORT || 5000;
 const postRouter = require("./routes/post.route");
-const userRouter = require("./routes/user.route");
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/posts", postRouter);
-app.use("/users", userRouter);
 
 const db = process.env.MONGO_URI;
 
